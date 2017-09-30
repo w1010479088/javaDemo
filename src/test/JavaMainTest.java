@@ -1,5 +1,6 @@
 package test;
 
+import test.manager.ThreadManager;
 import test.utils.LogUtil;
 
 public class JavaMainTest {
