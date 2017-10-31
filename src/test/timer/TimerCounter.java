@@ -36,7 +36,6 @@ public class TimerCounter {
 
 
     private List<TimerListener> mListeners = new ArrayList<>();
-    private TimerTask mTask;
     private Timer mTimer;
 
     private void addListener(TimerListener listener) {
@@ -50,13 +49,12 @@ public class TimerCounter {
     private void startTimer() {
         if (mTimer == null) {
             mTimer = new Timer();
-            mTask = new TimerTask() {
+            mTimer.schedule(new TimerTask() {
                 @Override
                 public void run() {
                     update();
                 }
-            };
-            mTimer.schedule(mTask, 0, 1000);
+            }, 0, 1000);
         }
     }
 
