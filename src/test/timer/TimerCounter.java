@@ -37,6 +37,7 @@ public class TimerCounter {
 
     private List<TimerListener> mListeners = new ArrayList<>();
     private Timer mTimer;
+    private boolean mStop;
 
     private void addListener(TimerListener listener) {
         mListeners.add(listener);
@@ -48,6 +49,7 @@ public class TimerCounter {
 
     private void startTimer() {
         if (mTimer == null) {
+            mStop = false;
             mTimer = new Timer();
             mTimer.schedule(new TimerTask() {
                 @Override
@@ -59,15 +61,19 @@ public class TimerCounter {
     }
 
     private void stopTimer() {
+        mStop = true;
         if (mTimer != null) {
             mTimer.cancel();
             mTimer = null;
+            mListeners.clear();
         }
     }
 
     private void update() {
+        if (mStop) return;
         for (TimerListener listener : mListeners) {
             if (listener != null) {
+                if (mStop) break;
                 listener.onUpdate();
             }
         }
