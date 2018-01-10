@@ -3,6 +3,6 @@ package test.utils;
 public class LogUtil {
 
     public static void log(String content) {
-        System.out.println(content);
+        System.out.println("------>" + content);
     }
 }

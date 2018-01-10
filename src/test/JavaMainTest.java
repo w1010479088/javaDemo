@@ -6,6 +6,7 @@ import test.clone.User;
 import test.factory.ISender;
 import test.factory.ISenderProvider;
 import test.factory.SmsFactory;
+import test.retrofit.NetWorkTest;
 import test.timer.TimerTestManager;
 import test.utils.LogUtil;
 
@@ -23,7 +24,8 @@ public class JavaMainTest {
 //        testInteger();
 //        testTimerCounter();
 //        testFactory();
-        testClone();
+//        testClone();
+        NetWorkTest.request();
         LogUtil.log("------------> Java运行结束!");
     }
 
