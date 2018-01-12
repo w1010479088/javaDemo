@@ -6,7 +6,7 @@ import test.clone.User;
 import test.factory.ISender;
 import test.factory.ISenderProvider;
 import test.factory.SmsFactory;
-import test.retrofit.NetWorkTest;
+import test.okhttp3.OkHttpRequestor;
 import test.timer.TimerTestManager;
 import test.utils.LogUtil;
 
@@ -25,7 +25,8 @@ public class JavaMainTest {
 //        testTimerCounter();
 //        testFactory();
 //        testClone();
-        NetWorkTest.request();
+//        NetWorkTest.request();
+        OkHttpRequestor.test();
         LogUtil.log("------------> Java运行结束!");
     }
 

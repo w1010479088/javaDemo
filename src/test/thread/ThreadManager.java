@@ -1,7 +1,5 @@
-package test.manager;
+package test.thread;
 
-import test.thread.RandomAccessFileDownloaderPro;
-import test.thread.RandomAccessFileListener;
 import test.utils.LogUtil;
 
 import java.util.Timer;
