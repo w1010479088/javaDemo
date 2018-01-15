@@ -1,7 +1,6 @@
 package test.okhttp3;
 
 import okhttp3.*;
-import sun.security.ssl.SSLSocketFactoryImpl;
 import test.utils.LogUtil;
 
 import javax.net.ssl.HostnameVerifier;
@@ -9,9 +8,7 @@ import javax.net.ssl.SSLSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
@@ -24,6 +21,7 @@ public class OkHttpRequestor {
         private static final OkHttpRequestor Instance = new OkHttpRequestor();
     }
 
+    private static final String FILE_PATH = "/Users/mac/Desktop/20180115.png";
     private static final String URL_BAI_DU = "http://www.baidu.com";
     private static final String URL_SPECIAL = "http://a.lrlz.com/mobile/index.php?act=special&op=index&special_id=186&page=10&curpage=1&client_type=android";
     private static final String URL_TABS = "http://a.lrlz.com/mobile/index.php?act=index&op=tabs&client_type=android";
@@ -80,19 +78,33 @@ public class OkHttpRequestor {
 
         @Override
         public void onResponse(Call call, Response response) throws IOException {
+            LogUtil.log("onResponse :--->" + response.body().string());
             if (!mRequested) {
-                request(URL_BAI_DU);
+//                requestNormal(URL_BAI_DU);
             }
             mRequested = true;
-            LogUtil.log("onResponse :--->" + response.body().string());
         }
     };
 
     public static void test() {
-        InstanceHolder.Instance.request(URL_TABS);
+        InstanceHolder.Instance.requestNormal(URL_TABS);
     }
 
-    private void request(String url) {
+    public static void testUploadFile() {
+        InstanceHolder.Instance.createUploadFileRequest(FILE_PATH);
+    }
+
+    private void createUploadFileRequest(String filePath) {
+        Request request = new Request
+                .Builder()
+                .url("http://a.lrlz.com/upfile.php?act=\"\"op=\"\"&client_type=android")
+                .put(createUploadFileRequestBody(new File(filePath)))
+                .build();
+
+        mClient.newCall(request).enqueue(mCallBack);
+    }
+
+    private void requestNormal(String url) {
         Request request = createRequest(url);
         mClient.newCall(request).enqueue(mCallBack);
     }
@@ -102,20 +114,25 @@ public class OkHttpRequestor {
                 .Builder()
                 .url(url)
 //                .headers(getHeaders())
-//                .put(formBody())
+//                .put(formUserInfo())
                 .build();
     }
 
-    private RequestBody requestBody() {
-        return RequestBody.create(MultipartBody.MIXED, new File(""));
-    }
-
-    private RequestBody formBody() {
+    private RequestBody formUserInfo() {
         return new FormBody
                 .Builder()
                 .addEncoded("name", "大俊子")
                 .add("password", "92347592")
                 .add("mobile", "13000000000")
+                .build();
+    }
+
+    private RequestBody createUploadFileRequestBody(File file) {
+        return new MultipartBody
+                .Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("submit", "Upload")
+                .addFormDataPart("file", file.getName(), RequestBody.create(MediaType.parse("image/png"), file))
                 .build();
     }
 

@@ -26,7 +26,7 @@ public class JavaMainTest {
 //        testFactory();
 //        testClone();
 //        NetWorkTest.request();
-        OkHttpRequestor.test();
+        OkHttpRequestor.testUploadFile();
         LogUtil.log("------------> Java运行结束!");
     }
 
