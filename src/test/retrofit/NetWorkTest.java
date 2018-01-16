@@ -1,6 +1,5 @@
 package test.retrofit;
 
-import javafx.beans.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;

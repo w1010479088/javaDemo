@@ -98,7 +98,7 @@ public class OkHttpRequestor {
         Request request = new Request
                 .Builder()
                 .url("http://a.lrlz.com/upfile.php?act=\"\"op=\"\"&client_type=android")
-                .put(createUploadFileRequestBody(new File(filePath)))
+                .post(createUploadFileRequestBody(new File(filePath)))
                 .build();
 
         mClient.newCall(request).enqueue(mCallBack);
@@ -113,17 +113,6 @@ public class OkHttpRequestor {
         return new Request
                 .Builder()
                 .url(url)
-//                .headers(getHeaders())
-//                .put(formUserInfo())
-                .build();
-    }
-
-    private RequestBody formUserInfo() {
-        return new FormBody
-                .Builder()
-                .addEncoded("name", "大俊子")
-                .add("password", "92347592")
-                .add("mobile", "13000000000")
                 .build();
     }
 
@@ -132,29 +121,7 @@ public class OkHttpRequestor {
                 .Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("submit", "Upload")
-                .addFormDataPart("file", file.getName(), RequestBody.create(MediaType.parse("image/png"), file))
-                .build();
-    }
-
-    private Headers getHeaders() {
-        return new Headers
-                .Builder()
-                .add("CLIENT_TYPE", "Android")
-                .add("CLIENT_VERSION", "30")
-                .add("CLIENT_SESSION", "OWEOWEJKSDHGFUIQWYER")
-                .build();
-    }
-
-    private Cookie cookie() {
-        return new Cookie
-                .Builder()
-                .domain("a.lrlz.com")
-                .expiresAt(23512348590L)
-                .secure()
-                .name("wujun")
-                .value("hqweiu")
-                .httpOnly()
-                .path("/aksdfiu/asdfh")
+                .addFormDataPart("file", "image.png", RequestBody.create(MultipartBody.FORM, file))
                 .build();
     }
 }
