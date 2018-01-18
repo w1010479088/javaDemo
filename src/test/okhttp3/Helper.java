@@ -7,7 +7,7 @@ import okhttp3.RequestBody;
 
 public class Helper {
 
-    public static Cookie cookie() {
+    public static Cookie newCookie() {
         return new Cookie
                 .Builder()
                 .domain("a.lrlz.com")
