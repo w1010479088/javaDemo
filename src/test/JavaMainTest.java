@@ -3,6 +3,7 @@ package test;
 import test.clone.Identity;
 import test.clone.Organ;
 import test.clone.User;
+import test.design.composite.EquipmentTest;
 import test.factory.ISender;
 import test.factory.ISenderProvider;
 import test.factory.SmsFactory;
@@ -26,7 +27,8 @@ public class JavaMainTest {
 //        testFactory();
 //        testClone();
 //        NetWorkTest.request();
-        OkHttpRequestor.testUploadFile();
+//        OkHttpRequestor.testUploadFile();
+        EquipmentTest.test();
         LogUtil.log("------------> Java运行结束!");
     }
 
