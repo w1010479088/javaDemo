@@ -1,6 +1,5 @@
 package test.design.adapter;
 
-import android.util.Log;
 import test.utils.LogUtil;
 
 public class ObjectAdapter {
