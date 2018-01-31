@@ -3,7 +3,11 @@ package test;
 import test.clone.Identity;
 import test.clone.Organ;
 import test.clone.User;
+import test.design.adapter.ClazzAdapter;
+import test.design.adapter.InterfaceAdapter;
+import test.design.adapter.ObjectAdapter;
 import test.design.composite.EquipmentTest;
+import test.design.template.GameTest;
 import test.factory.ISender;
 import test.factory.ISenderProvider;
 import test.factory.SmsFactory;
@@ -28,7 +32,11 @@ public class JavaMainTest {
 //        testClone();
 //        NetWorkTest.request();
 //        OkHttpRequestor.testUploadFile();
-        EquipmentTest.test();
+//        EquipmentTest.test();
+//        GameTest.test();
+//        ClazzAdapter.test();
+//        ObjectAdapter.test();
+        InterfaceAdapter.test();
         LogUtil.log("------------> Java运行结束!");
     }
 
