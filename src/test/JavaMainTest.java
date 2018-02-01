@@ -7,6 +7,7 @@ import test.design.adapter.ClazzAdapter;
 import test.design.adapter.InterfaceAdapter;
 import test.design.adapter.ObjectAdapter;
 import test.design.composite.EquipmentTest;
+import test.design.prototype.Source;
 import test.design.template.GameTest;
 import test.factory.ISender;
 import test.factory.ISenderProvider;
@@ -36,7 +37,8 @@ public class JavaMainTest {
 //        GameTest.test();
 //        ClazzAdapter.test();
 //        ObjectAdapter.test();
-        InterfaceAdapter.test();
+//        InterfaceAdapter.test();
+        Source.test();
         LogUtil.log("------------> Java运行结束!");
     }
 
