@@ -15,6 +15,7 @@ import test.factory.SmsFactory;
 import test.okhttp3.OkHttpRequestor;
 import test.timer.TimerTestManager;
 import test.utils.LogUtil;
+import test.utils.RegexUtil;
 
 import java.util.ArrayList;
 
@@ -38,7 +39,8 @@ public class JavaMainTest {
 //        ClazzAdapter.test();
 //        ObjectAdapter.test();
 //        InterfaceAdapter.test();
-        Source.test();
+//        Source.test();
+        RegexUtil.test();
         LogUtil.log("------------> Java运行结束!");
     }
 
