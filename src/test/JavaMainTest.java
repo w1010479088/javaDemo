@@ -1,5 +1,6 @@
 package test;
 
+import test.bitset.BitSetTest;
 import test.clone.Identity;
 import test.clone.Organ;
 import test.clone.User;
@@ -40,7 +41,8 @@ public class JavaMainTest {
 //        ObjectAdapter.test();
 //        InterfaceAdapter.test();
 //        Source.test();
-        RegexUtil.test();
+//        RegexUtil.test();
+        BitSetTest.test();
         LogUtil.log("------------> Java运行结束!");
     }
 
