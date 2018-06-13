@@ -1,22 +1,14 @@
 package test;
 
-import test.bitset.BitSetTest;
 import test.clone.Identity;
 import test.clone.Organ;
 import test.clone.User;
-import test.design.adapter.ClazzAdapter;
-import test.design.adapter.InterfaceAdapter;
-import test.design.adapter.ObjectAdapter;
-import test.design.composite.EquipmentTest;
-import test.design.prototype.Source;
-import test.design.template.GameTest;
 import test.factory.ISender;
 import test.factory.ISenderProvider;
 import test.factory.SmsFactory;
-import test.okhttp3.OkHttpRequestor;
+import test.hourcoincide.CoincideForHourMinute;
 import test.timer.TimerTestManager;
 import test.utils.LogUtil;
-import test.utils.RegexUtil;
 
 import java.util.ArrayList;
 
@@ -42,7 +34,8 @@ public class JavaMainTest {
 //        InterfaceAdapter.test();
 //        Source.test();
 //        RegexUtil.test();
-        BitSetTest.test();
+//        BitSetTest.test();
+        CoincideForHourMinute.test();
         LogUtil.log("------------> Java运行结束!");
     }
 
