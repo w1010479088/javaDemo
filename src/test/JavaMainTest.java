@@ -35,7 +35,8 @@ public class JavaMainTest {
 //        Source.test();
 //        RegexUtil.test();
 //        BitSetTest.test();
-        CoincideForHourMinute.test();
+//        CoincideForHourMinute.test();
+        BaseTest.test();
         LogUtil.log("------------> Java运行结束!");
     }
 
