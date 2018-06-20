@@ -6,7 +6,6 @@ import test.clone.User;
 import test.factory.ISender;
 import test.factory.ISenderProvider;
 import test.factory.SmsFactory;
-import test.hourcoincide.CoincideForHourMinute;
 import test.timer.TimerTestManager;
 import test.utils.LogUtil;
 
@@ -36,7 +35,8 @@ public class JavaMainTest {
 //        RegexUtil.test();
 //        BitSetTest.test();
 //        CoincideForHourMinute.test();
-        BaseTest.test();
+//        BaseTest.test();
+//        ServerUtil.test();
         LogUtil.log("------------> Java运行结束!");
     }
 
