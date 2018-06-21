@@ -1,4 +1,4 @@
-package test.server_client;
+package test.udp;
 
 public class Server extends BaseServer {
 

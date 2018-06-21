@@ -1,4 +1,4 @@
-package test.server_client;
+package test.udp;
 
 import java.io.BufferedReader;
 import java.io.IOException;
