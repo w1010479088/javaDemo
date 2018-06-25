@@ -19,13 +19,13 @@ public class SemaphoreTest2 {
 
     private static class Manager {
         private boolean[] resources;
-        private final ReentrantLock lock;
         private final Semaphore semaphore;
+        private ReentrantLock lock;
 
         Manager() {
             resources = new boolean[10];
-            lock = new ReentrantLock(true);
             semaphore = new Semaphore(resources.length, true);
+            lock = new ReentrantLock(true);
             for (int i = 0; i < resources.length; i++) {
                 resources[i] = true;
             }
@@ -36,11 +36,11 @@ public class SemaphoreTest2 {
                 log(String.format("userId为%d的正在准备...", userId));
                 semaphore.acquire();
                 int resourceId = getResourceId();
-                log(String.format("userId为%d正在使用%d的资源...", userId, resourceId));
+                log(String.format("userId为%d正在使用%d号资源...", userId, resourceId));
                 Thread.sleep(500);
+                log(String.format("userId为%d的使用%d号资源完毕!", userId, resourceId));
                 resources[resourceId] = true;
                 semaphore.release();
-                log(String.format("userId为%d的使用%d资源完毕!", userId, resourceId));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
