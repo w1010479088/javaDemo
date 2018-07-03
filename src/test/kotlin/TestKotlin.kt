@@ -307,8 +307,104 @@ class TestKotlin {
             public open val y: Int = x
         }
 
+        open class A2(x: Int) {
+            public open val y: Int = x;
+        }
+
         interface B {
             val length: String
         }
+
+        interface B2 {
+            val length: Int
+        }
+
+        val ab: A2 = object : A2(1), B2 {
+            override val length: Int = 15
+        }
+
+        fun foo() {
+            val adHoc = object {
+                var x: Int = 0
+                var y: Int = 0
+            }
+        }
+
+        lateinit var a2: A2
+
+        sealed class Expr {
+
+            class Const(val num: Double) : Expr()
+
+            class Sum(val e1: Expr, val e2: Expr) : Expr()
+
+            object NotNumber : Expr()
+        }
+
+        object Resource {
+            val name = "Name"
+        }
+
+        val p: String by lazy {
+            "String lazy"
+        }
+
+        fun test() {
+            val result = try {
+
+            } catch (e: ArithmeticException) {
+
+            }
+        }
+
+        fun testLet(): Int {
+            "testLet".let {
+                println(it)
+            }
+            return 1
+        }
+
+        fun testApply() {
+            ArrayList<String>().apply {
+                add("testApply1")
+                add("testApply2")
+                clone()
+                add("testApply3")
+            }
+        }
+
+        fun testWith() {
+            with(ArrayList<String>()) {
+                add("testWith1")
+                add("testWith2")
+                add("testWith3")
+            }.let {
+                println(it)
+            }
+        }
+
+        class Customer(name: String) {
+
+            init {
+                println()
+            }
+        }
+
+        open class Person {
+            var children: List<Person> = listOf()
+
+            init {
+
+            }
+
+            constructor(parent: Person) {
+                parent.children.size
+            }
+        }
+
+        open class Base(p: Int)
+
+        class Derived(p: Int) : Base(p)
+
     }
 }
