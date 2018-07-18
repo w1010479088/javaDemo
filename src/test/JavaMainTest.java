@@ -6,7 +6,7 @@ import test.clone.User;
 import test.factory.ISender;
 import test.factory.ISenderProvider;
 import test.factory.SmsFactory;
-import test.kotlin.TestKotlin;
+import test.kotlin.TestKotlinA;
 import test.timer.TimerTestManager;
 import test.utils.LogUtil;
 
@@ -38,7 +38,7 @@ public class JavaMainTest {
 //        CoincideForHourMinute.test();
 //        BaseTest.test();
 //        ServerUtil.test();
-        TestKotlin.Companion.main(new String[5]);
+        TestKotlinA.Companion.main(new String[5]);
         LogUtil.log("------------> Java运行结束!");
     }
 

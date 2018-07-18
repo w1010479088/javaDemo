@@ -2,7 +2,7 @@ package test.kotlin
 
 import java.security.Key
 
-class TestKotlin {
+class TestKotlinA {
 
     companion object {
         fun main(args: Array<String>) {
@@ -405,6 +405,10 @@ class TestKotlin {
         open class Base(p: Int)
 
         class Derived(p: Int) : Base(p)
+
+    }
+
+    class D {
 
     }
 }
