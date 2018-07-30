@@ -38,7 +38,7 @@ public class JavaMainTest {
 //        CoincideForHourMinute.test();
 //        BaseTest.test();
 //        ServerUtil.test();
-        TestKotlinA.Companion.main(new String[5]);
+//        TestKotlinA.Companion.main(new String[5]);
         LogUtil.log("------------> Java运行结束!");
     }
 
