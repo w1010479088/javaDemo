@@ -1,5 +1,7 @@
 package test.kotlin
 
+import test.utils.LogUtil
+
 class TestKotlinB {
     data class User(val name: String, val age: Int)
 
@@ -95,4 +97,12 @@ class TestKotlinB {
         }
 
     }
+}
+
+fun testStringObject() {
+    val a = "大俊子"
+    val b = "cde"
+    val c = "efd"
+    val list = arrayListOf<String>("abc", "cde", "大俊子", "edf")
+    LogUtil.log("${list.contains(a)}-${list.contains(b)}-${list.contains(c)}")
 }
