@@ -95,4 +95,38 @@ class TestKotlinB {
         }
 
     }
+
+    enum class Direction {
+        NORTH, SOUTH, WEST, EAST
+    }
+
+    enum class Color(val rgb: Int) {
+        RED(0xFF0000),
+        GREEN(0x00FF00),
+        BLUE(0x0000FF)
+    }
+
+    enum class ProtocolState {
+        WAITING {
+            override fun signal(): ProtocolState {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+        },
+
+        TALKING {
+            override fun signal(): ProtocolState {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+        };
+
+        abstract fun signal(): ProtocolState
+    }
+
+    fun foo() {
+        val adHoc = object {
+            var x = 0
+            var y = 1
+        }
+        val z = adHoc.x + adHoc.y
+    }
 }
