@@ -39,10 +39,6 @@ class TestKotlinB {
         fun next(): T
     }
 
-    fun <T> singletonList(item: T): List<T> {
-        return arrayListOf(item)
-    }
-
     fun <T> T.basicToString(): String {
         return "dafasdfasdf"
     }
