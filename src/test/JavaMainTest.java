@@ -1,7 +1,7 @@
 package test;
 
+import test.strategy.Calcluater;
 import test.utils.LogUtil;
-import static test.kotlin.TestKotlinBKt.testStringObject;
 
 public class JavaMainTest {
 
@@ -11,7 +11,8 @@ public class JavaMainTest {
 
     private static void testMethod() {
         LogUtil.log("------------> Java开始运行!");
-        testStringObject();
+        float calculate = new Calcluater(213F).calculate();
+        LogUtil.log("------------> calculate:" + calculate);
         LogUtil.log("------------> Java运行结束!");
     }
 }
