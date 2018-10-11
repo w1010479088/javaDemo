@@ -2,7 +2,7 @@ package test.downloader;
 
 public interface OnItemThreadListener {
 
-    void onProgress(int length);
+    void onLength(String threadName, int length);
 
     void onFinish();
 

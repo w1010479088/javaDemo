@@ -24,7 +24,6 @@ class MultiThreadDownloader implements IKillble {
     private long mFileSize;
     private long mCurLength;
     private int mThreadCount;
-    private int mFinishedCount;
     private String mDirStr;
     private String mFilename;
     private File mSourceFile;
@@ -103,13 +102,12 @@ class MultiThreadDownloader implements IKillble {
             if (start < end) {
                 DownloadThread downloadThread = new DownloadThread(urlStr, itemFile, start, end, new OnItemThreadListener() {
                     @Override
-                    public void onProgress(int length) {
-                        downloadedLength(length);
+                    public void onLength(String threadName, int length) {
+                        downloadedLength(threadName, length);
                     }
 
                     @Override
                     public void onFinish() {
-                        downloadFinish();
                     }
 
                     @Override
@@ -118,7 +116,7 @@ class MultiThreadDownloader implements IKillble {
                     }
                 });
                 mKillables.add(downloadThread);
-                downloadThread.run();
+                downloadThread.start();
             }
         }
         checkCompleted();
@@ -131,23 +129,15 @@ class MultiThreadDownloader implements IKillble {
         }
     }
 
-    private void downloadedLength(int length) {
+    private synchronized void downloadedLength(String threadName, int length) {
         mCurLength += length;
-        log("当前大小:" + mCurLength);
+        log("当前大小:" + threadName + "|" + mCurLength);
         checkCompleted();
     }
 
     private void updateProgress() {
         if (mFileSize > 0) {
             mListener.onProgress((int) (mCurLength * 100 / mFileSize));
-        }
-    }
-
-    private void downloadFinish() {
-        mFinishedCount++;
-        log("当前总完成数:" + mFinishedCount);
-        if (mFinishedCount >= mThreadCount) {
-            integrateFile();
         }
     }
 
@@ -190,7 +180,7 @@ class MultiThreadDownloader implements IKillble {
                     }
                 }
             } else {
-                onError(new RuntimeException("文件大小校验不正确,取消操作!正常文件大小为:" + mSourceFile.length() + "-- 实际碎片整合之后大小为: " + length));
+                log("文件大小校验不正确,取消操作!正常文件大小为:" + mSourceFile.length() + "-- 实际碎片整合之后大小为: " + length);
             }
         }).start();
     }

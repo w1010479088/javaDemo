@@ -42,7 +42,7 @@ class DownloadThread extends Thread implements IKillble {
                         break;
                     }
                     raf.write(buf, 0, len);
-                    mListener.onProgress(len);
+                    mListener.onLength(threadName(), len);
                 }
                 raf.close();
                 is.close();
