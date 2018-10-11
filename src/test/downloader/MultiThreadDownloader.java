@@ -121,11 +121,23 @@ class MultiThreadDownloader implements IKillble {
                 downloadThread.run();
             }
         }
+        checkCompleted();
+    }
+
+    private void checkCompleted() {
+        updateProgress();
+        if (mCurLength == mFileSize) {
+            integrateFile();
+        }
     }
 
     private void downloadedLength(int length) {
         mCurLength += length;
         log("当前大小:" + mCurLength);
+        checkCompleted();
+    }
+
+    private void updateProgress() {
         if (mFileSize > 0) {
             mListener.onProgress((int) (mCurLength * 100 / mFileSize));
         }
