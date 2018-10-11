@@ -1,21 +1,17 @@
-package test.multi_thread_downloader;
+package test.downloader;
 
 import test.utils.LogUtil;
 
-public class DownloaderTest {
+public class Test {
     private static String savePath = "tempFile/";
     private static String url = "https://passport.lrlz.com/data/upload/package/xmmz_release.apk";
     private static String fileName = "xmmz_release.apk";
     private static int threadNum = 3;
 
-    public void down() {
-        downloadService();
-    }
+    private MultiThreadDownloader mDownloader;
 
-    private MultiThreadDownloader mDownloadManager;
-
-    private void downloadService() {
-        mDownloadManager = new MultiThreadDownloader(url, savePath, fileName, threadNum, new MultiThreadDownloader.DownloadListener() {
+    public void run() {
+        mDownloader = new MultiThreadDownloader(url, savePath, fileName, threadNum, new OnDownloadListener() {
 
             @Override
             public void onFileSize(long size) {
@@ -44,7 +40,14 @@ public class DownloaderTest {
         });
     }
 
-    public static void log(String content) {
+    private void kill() {
+        log("Kill");
+        if (mDownloader != null) {
+            mDownloader.kill();
+        }
+    }
+
+    private void log(String content) {
         LogUtil.log(content);
     }
 }

@@ -1,7 +1,7 @@
 package test;
 
+import test.downloader.Test;
 import test.strategy.Calcluater;
-import test.multi_thread_downloader.DownloaderTest;
 import test.utils.LogUtil;
 
 public class JavaMainTest {
@@ -12,7 +12,7 @@ public class JavaMainTest {
 
     private static void testMethod() {
         LogUtil.log("------------> Java开始运行!");
-        new DownloaderTest().down();
+        new Test().run();
         LogUtil.log("------------> Java运行结束!");
     }
 
