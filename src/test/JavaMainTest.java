@@ -1,6 +1,5 @@
 package test;
 
-import test.downloader.Test;
 import test.strategy.Calcluater;
 import test.utils.LogUtil;
 
@@ -12,12 +11,16 @@ public class JavaMainTest {
 
     private static void testMethod() {
         LogUtil.log("------------> Java开始运行!");
-        new Test().run();
+        testHandler();
         LogUtil.log("------------> Java运行结束!");
     }
 
     private void testCalculater() {
         float calculate = new Calcluater(213F).calculate();
         LogUtil.log("------------> calculate:" + calculate);
+    }
+
+    private static void testHandler() {
+        new test.handler.Test().init();
     }
 }
