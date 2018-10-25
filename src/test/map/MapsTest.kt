@@ -27,7 +27,7 @@ class MapsTest {
 }
 
 fun main(args: Array<String>) {
-//    MapsTest().test()
+    //    MapsTest().test()
     LogUtil.log(tableSizeFor(3).toString())
 }
 
