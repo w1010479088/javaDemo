@@ -1,4 +1,4 @@
-package test.volatileT
+package test.sync
 
 import test.utils.LogUtil
 import java.util.concurrent.CountDownLatch
