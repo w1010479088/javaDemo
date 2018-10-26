@@ -9,6 +9,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import test.utils.IOUtils;
 import test.utils.LogUtil;
@@ -27,15 +29,17 @@ class MultiThreadDownloader implements IKillble {
     private String mDirStr;
     private String mFilename;
     private File mSourceFile;
+    private OnDownloadListener mListener;
+    private ExecutorService mExecutor;
     private List<File> mCacheFiles = new ArrayList<>();
     private List<IKillble> mKillables = new ArrayList<>();
-    private OnDownloadListener mListener;
 
     MultiThreadDownloader(String url, String savePath, String fileName, int threadNum, OnDownloadListener listener) {
         this.mDirStr = savePath;
         this.mFilename = fileName;
         this.mThreadCount = threadNum;
         this.mListener = listener;
+        this.mExecutor = Executors.newFixedThreadPool(threadNum);
         init(url);
     }
 
@@ -51,7 +55,7 @@ class MultiThreadDownloader implements IKillble {
     }
 
     private void init(String urlStr) {
-        new Thread(() -> {
+        mExecutor.submit(() -> {
             try {
                 createSourceFile(urlStr);
                 createCacheFile();
@@ -59,7 +63,7 @@ class MultiThreadDownloader implements IKillble {
             } catch (Exception ex) {
                 onError(ex);
             }
-        }).start();
+        });
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
@@ -100,7 +104,7 @@ class MultiThreadDownloader implements IKillble {
             long end = (i == (mThreadCount - 1)) ? mFileSize : ((i + 1) * itemSize - 1);
 
             if (start < end) {
-                DownloadThread downloadThread = new DownloadThread(urlStr, itemFile, start, end, new OnItemThreadListener() {
+                DownloadTask downloadTask = new DownloadTask(urlStr, itemFile, start, end, new OnItemThreadListener() {
                     @Override
                     public void onLength(String threadName, int length) {
                         downloadedLength(threadName, length);
@@ -115,8 +119,8 @@ class MultiThreadDownloader implements IKillble {
                         MultiThreadDownloader.this.onError(ex);
                     }
                 });
-                mKillables.add(downloadThread);
-                downloadThread.start();
+                mKillables.add(downloadTask);
+                mExecutor.submit(downloadTask);
             }
         }
         checkCompleted();
@@ -143,7 +147,7 @@ class MultiThreadDownloader implements IKillble {
 
     private void integrateFile() {
         mListener.onIntegrate();
-        new Thread(() -> {
+        mExecutor.submit(() -> {
             long length = 0;
             for (File file : mCacheFiles) {
                 length += file.length();
@@ -182,7 +186,7 @@ class MultiThreadDownloader implements IKillble {
             } else {
                 log("文件大小校验不正确,取消操作!正常文件大小为:" + mSourceFile.length() + "-- 实际碎片整合之后大小为: " + length);
             }
-        }).start();
+        });
     }
 
     private void onError(Exception ex) {
