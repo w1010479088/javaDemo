@@ -23,4 +23,12 @@ public class JavaMainTest {
     private static void testHandler() {
         new test.handler.Test().init();
     }
+
+    public synchronized int getA() {
+        return 1;
+    }
+
+    public synchronized int getB() {
+        return 2;
+    }
 }
