@@ -27,8 +27,8 @@ public class Test {
     }
 
 
-    public static void main2(String[] args) {
-        new NetEaseParser().parse("tempFile/wy_test_1.mp3", "tempFile/一百万个可能.mp3", new OnParseListener() {
+    public static void main(String[] args) {
+        new NetEaseParser().parse("tempFile/倒数-加密.uc", "tempFile/倒数-解密.mp3", new OnParseListener() {
             @Override
             public void onStart() {
                 log("任务开始!");
