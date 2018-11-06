@@ -4,7 +4,7 @@ import test.strategy.Calcluater;
 import test.utils.LogUtil;
 
 public class JavaMainTest {
-
+    private static int count;
     public static void main(String[] args) {
         testMethod();
     }
@@ -16,8 +16,13 @@ public class JavaMainTest {
     }
 
     private void testCalculater() {
+        count = 6;
         float calculate = new Calcluater(213F).calculate();
         LogUtil.log("------------> calculate:" + calculate);
+        ThreadLocal<String> local = new ThreadLocal<>();
+        local.set("大俊子");
+        local.get();
+        local.remove();
     }
 
     private static void testHandler() {
