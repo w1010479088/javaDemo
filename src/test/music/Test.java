@@ -1,0 +1,48 @@
+package test.music;
+
+import test.utils.LogUtil;
+
+public class Test {
+    public static void main1(String[] args) {
+        new KuGouParser().parse("tempFile/新的心跳-加密版.kge", "tempFile/新的心跳-加密版-待测.mp3", new OnParseListener() {
+            @Override
+            public void onStart() {
+                log("解码开始...");
+            }
+
+            @Override
+            public void onFinish() {
+                log("解码结束!");
+            }
+
+            @Override
+            public void onError(String content) {
+                log(content);
+            }
+        });
+    }
+
+    private static void log(String content) {
+        LogUtil.log(content);
+    }
+
+
+    public static void main2(String[] args) {
+        new NetEaseParser().parse("tempFile/wy_test_1.mp3", "tempFile/一百万个可能.mp3", new OnParseListener() {
+            @Override
+            public void onStart() {
+                log("任务开始!");
+            }
+
+            @Override
+            public void onFinish() {
+                log("正常解析完毕!");
+            }
+
+            @Override
+            public void onError(String content) {
+                log(content);
+            }
+        });
+    }
+}
