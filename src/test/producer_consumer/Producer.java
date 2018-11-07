@@ -26,6 +26,7 @@ public class Producer implements Runnable {
                 PCData data = new PCData(mCount.incrementAndGet());
                 if (mQueue.offer(data, 20, TimeUnit.SECONDS)) {
                     log("加入成功:" + data.getCount());
+                    log("共有:" + mQueue.size());
                 } else {
                     log("加入失败:" + data.getCount());
                 }
