@@ -10,7 +10,7 @@ import test.utils.LogUtil;
 public class Test {
 
     public static void main(String[] args) {
-        BlockingQueue<PCData> queue = new LinkedBlockingDeque<>(2);
+        BlockingQueue<PCData> queue = new LinkedBlockingDeque<>(1);
         ExecutorService service = Executors.newCachedThreadPool();
 
         Producer p1 = new Producer(queue);

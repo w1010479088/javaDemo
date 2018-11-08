@@ -19,10 +19,8 @@ public class Consumer implements Runnable {
         try {
             while (true) {
                 PCData data = mQueue.take();
-                if (data != null) {
-                    log("消费了:" + data.getCount());
-                    Thread.sleep(mRandom.nextInt(SLEEP_TIME));
-                }
+                log("消费了:" + data.getCount());
+                Thread.sleep(mRandom.nextInt(SLEEP_TIME));
             }
         } catch (Exception ex) {
             log(ex.getMessage());
