@@ -1,6 +1,7 @@
 package test.sync
 
 import test.utils.LogUtil
+import java.util.concurrent.Callable
 import java.util.concurrent.CyclicBarrier
 import java.util.concurrent.Executors
 
@@ -16,8 +17,17 @@ class CyclicBarrierTest {
         })
         val executor = Executors.newFixedThreadPool(10)
         for (i in 1..10) {
-            executor.submit(Runner("大俊子$i", barrier))
+            executor.execute(Runner("大俊子$i", barrier))
         }
+        val future = executor.submit(CallRunner())
+        val getBoolean = future.get()
+        if (getBoolean) {
+
+        } else {
+
+        }
+        val hashMap = HashMap<String, String>()
+        hashMap.put("大俊子", "在此!")
     }
 }
 
@@ -27,6 +37,14 @@ class Runner(val name: String, val barrier: CyclicBarrier) : Runnable {
         log("$name 准备...")
         barrier.await()
         log("$name 开始跑! ${System.currentTimeMillis()}")
+    }
+}
+
+class CallRunner : Callable<Boolean> {
+
+    override fun call(): Boolean {
+        log("call return")
+        return false
     }
 }
 
