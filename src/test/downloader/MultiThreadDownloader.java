@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import test.utils.IOUtils;
-import test.utils.LogUtil;
+import test.util.IOUtils;
+import test.util.LogUtil;
 
 /**
  * Created by mac on 2017/9/28.

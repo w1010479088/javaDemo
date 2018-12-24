@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import test.utils.LogUtil;
+import test.util.LogUtil;
 
 public class Producer implements Runnable {
     private static final int SLEEP_TIME = 1000;

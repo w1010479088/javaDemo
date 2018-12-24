@@ -9,7 +9,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import test.strategy.Calcluater;
-import test.utils.LogUtil;
+import test.util.LogUtil;
 
 public class JavaMainTest {
     private static int count;

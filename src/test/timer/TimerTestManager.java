@@ -1,6 +1,6 @@
 package test.timer;
 
-import test.utils.LogUtil;
+import test.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;

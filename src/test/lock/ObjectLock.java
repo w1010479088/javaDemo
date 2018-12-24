@@ -1,6 +1,6 @@
 package test.lock;
 
-import test.utils.LogUtil;
+import test.util.LogUtil;
 
 public class ObjectLock {
     private final Object lock = new Object();

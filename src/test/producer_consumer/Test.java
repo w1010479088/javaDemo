@@ -5,7 +5,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingDeque;
 
-import test.utils.LogUtil;
+import test.util.LogUtil;
 
 public class Test {
 

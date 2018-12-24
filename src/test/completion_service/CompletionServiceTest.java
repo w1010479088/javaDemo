@@ -7,7 +7,7 @@ import java.util.concurrent.ExecutorCompletionService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import test.utils.LogUtil;
+import test.util.LogUtil;
 
 public class CompletionServiceTest {
     private static final int THREAD_POOL = 10;

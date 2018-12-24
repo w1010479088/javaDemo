@@ -1,6 +1,6 @@
 package test.design.template;
 
-import test.utils.LogUtil;
+import test.util.LogUtil;
 
 public class BasketBall extends Game {
     @Override

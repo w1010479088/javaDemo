@@ -1,7 +1,7 @@
 package test.design.prototype;
 
-import test.utils.DeepCloneUtil;
-import test.utils.LogUtil;
+import test.util.DeepCloneUtil;
+import test.util.LogUtil;
 
 import java.io.IOException;
 import java.io.Serializable;

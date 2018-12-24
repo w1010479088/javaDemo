@@ -1,6 +1,6 @@
 package test.music;
 
-import test.utils.LogUtil;
+import test.util.LogUtil;
 
 public class Test {
     public static void main1(String[] args) {

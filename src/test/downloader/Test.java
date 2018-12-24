@@ -1,6 +1,6 @@
 package test.downloader;
 
-import test.utils.LogUtil;
+import test.util.LogUtil;
 
 public class Test {
     private static String savePath = "tempFile/";

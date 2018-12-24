@@ -1,7 +1,7 @@
 package test.okhttp3;
 
 import okhttp3.*;
-import test.utils.LogUtil;
+import test.util.LogUtil;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;

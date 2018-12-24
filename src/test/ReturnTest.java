@@ -1,6 +1,6 @@
 package test;
 
-import test.utils.LogUtil;
+import test.util.LogUtil;
 
 public class ReturnTest {
 

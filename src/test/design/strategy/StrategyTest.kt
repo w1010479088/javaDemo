@@ -1,6 +1,6 @@
 package test.design.strategy
 
-import test.utils.LogUtil
+import test.util.LogUtil
 
 const val STUDENT_DISCOUNT = 0.6F
 const val CHILD_DISCOUNT = 0.2F

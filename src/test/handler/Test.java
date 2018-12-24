@@ -5,7 +5,7 @@ import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
 
-import test.utils.LogUtil;
+import test.util.LogUtil;
 
 public class Test {
     private static final int MSG_GET = 1;

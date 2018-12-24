@@ -1,6 +1,6 @@
 package test.design.composite;
 
-import test.utils.LogUtil;
+import test.util.LogUtil;
 
 public class EquipmentTest {
 

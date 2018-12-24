@@ -5,7 +5,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import test.utils.LogUtil;
+import test.util.LogUtil;
 
 import java.io.IOException;
 

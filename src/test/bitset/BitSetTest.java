@@ -1,12 +1,12 @@
 package test.bitset;
 
 
-import test.utils.LogUtil;
-
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
 import java.util.Random;
+
+import test.util.LogUtil;
 
 public class BitSetTest {
 
