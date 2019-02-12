@@ -1,5 +1,9 @@
 package test.thread_local;
 
+import java.util.concurrent.CompletionService;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.concurrent.DelayQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -33,5 +37,19 @@ public class Test {
 
     private static void log(String content) {
         LogUtil.log(content);
+    }
+}
+
+
+class TestConcurrent {
+
+    void arrayList() {
+        CopyOnWriteArrayList copyOnWriteArrayList = new CopyOnWriteArrayList();
+        CopyOnWriteArraySet copyOnWriteArraySet = new CopyOnWriteArraySet();
+
+//        SortedMap sortedMap = new SortedMap();
+//        SortedSet sortedSet = new SortedSet();
+
+        CompletionService.class
     }
 }
