@@ -1,9 +1,7 @@
 package test.thread_local;
 
-import java.util.concurrent.CompletionService;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
-import java.util.concurrent.DelayQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -50,6 +48,8 @@ class TestConcurrent {
 //        SortedMap sortedMap = new SortedMap();
 //        SortedSet sortedSet = new SortedSet();
 
-        CompletionService.class
+//        CompletionService.class
+//        ThreadPoolExecutor
+        Runtime.getRuntime().availableProcessors();
     }
 }
