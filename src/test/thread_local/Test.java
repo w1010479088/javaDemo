@@ -51,5 +51,6 @@ class TestConcurrent {
 //        CompletionService.class
 //        ThreadPoolExecutor
         Runtime.getRuntime().availableProcessors();
+//        AtomicReference
     }
 }
