@@ -102,4 +102,50 @@ class TestConcurrent {
             //
         }
     }
+
+    private void swing() {
+    }
+
+    private void concurrentList() {
+//        ConcurrentLinkedQueue;
+        SingleTon.INSTANCE.get();
+    }
+}
+
+enum SingleTon {
+
+    INSTANCE(4, "4");
+
+    private int key;
+    private String value;
+
+    public int key() {
+        return key;
+    }
+
+    public String value() {
+        return value;
+    }
+
+    public String get() {
+        return value;
+    }
+
+    SingleTon(int key, String value) {
+        this.key = key;
+        this.value = value;
+    }
+}
+
+class SingleTon2 {
+    private SingleTon2() {
+    }
+
+    private static class Holder {
+        private static final SingleTon2 INSTANCE = new SingleTon2();
+    }
+
+    public static SingleTon2 getInstance() {
+        return Holder.INSTANCE;
+    }
 }
