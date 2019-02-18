@@ -1,5 +1,8 @@
 package test.thread_local;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+
 import java.util.concurrent.Callable;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -109,6 +112,20 @@ class TestConcurrent {
     private void concurrentList() {
 //        ConcurrentLinkedQueue;
         SingleTon.INSTANCE.get();
+    }
+
+    private void animator(){
+        ValueAnimator animator = new ValueAnimator();
+        animator.addUpdateListener(animation -> {
+
+        });
+        animator.cancel();
+        animator.end();
+
+        ObjectAnimator animator1 = new ObjectAnimator();
+        animator1.setTarget(this);
+        animator1.setIntValues(1,2,5);
+
     }
 }
 
