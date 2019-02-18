@@ -2,6 +2,7 @@ package test.list
 
 import test.util.LogUtil
 import java.util.*
+import kotlin.collections.ArrayList
 
 //FIFO
 open class Queue<T> {
@@ -19,6 +20,10 @@ open class Queue<T> {
 }
 
 fun main(args: Array<String>) {
+    ForEachEdit().test()
+}
+
+private fun test1() {
     val queue = Queue<String>()
     for (i in 1..10) {
         queue.push("大俊子$i")
@@ -30,4 +35,22 @@ fun main(args: Array<String>) {
 
 fun log(content: String) {
     LogUtil.log(content)
+}
+
+class ForEachEdit {
+    fun test() {
+        val list = ArrayList<Int>()
+        list.add(1)
+        list.add(2)
+        list.add(3)
+        list.add(4)
+        list.add(5)
+        list.add(6)
+        for (item in list) {
+            if (item == 3) {
+                list.remove(item)
+            }
+            log(item.toString())
+        }
+    }
 }
