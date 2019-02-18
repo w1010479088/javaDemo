@@ -1,12 +1,15 @@
 package test;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import test.strategy.Calcluater;
-import test.utils.LogUtil;
+import test.util.LogUtil;
 
 public class JavaMainTest {
     private static int count;
@@ -57,5 +60,9 @@ public class JavaMainTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void testSyncSet() {
+        Set<Object> set = Collections.synchronizedSet(new HashSet<>());
     }
 }

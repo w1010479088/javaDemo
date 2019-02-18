@@ -1,6 +1,6 @@
 package test.interfaceJava8
 
-import test.utils.LogUtil
+import test.util.LogUtil
 
 fun main(args: Array<String>) {
     ITestInterface().say()

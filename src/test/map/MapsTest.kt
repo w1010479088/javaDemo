@@ -1,6 +1,6 @@
 package test.map
 
-import test.utils.LogUtil
+import test.util.LogUtil
 import java.util.concurrent.ConcurrentHashMap
 
 class MapsTest {

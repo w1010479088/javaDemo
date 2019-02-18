@@ -1,6 +1,6 @@
 package test.design.responbility
 
-import test.utils.LogUtil
+import test.util.LogUtil
 
 fun main(args: Array<String>) {
     val task = Task(150)

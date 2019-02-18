@@ -1,6 +1,6 @@
 package test.list
 
-import test.utils.LogUtil
+import test.util.LogUtil
 import java.util.*
 
 //FIFO

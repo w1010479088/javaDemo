@@ -1,5 +1,7 @@
 package test.yield;
 
+import test.util.PublicTest;
+
 public class Test {
 
     public static void main(String[] args) {
@@ -12,5 +14,7 @@ public class Test {
             System.out.println(tag + i);
             Thread.yield();
         }
+
+        new PublicTest();
     }
 }

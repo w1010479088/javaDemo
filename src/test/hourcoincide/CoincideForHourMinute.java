@@ -1,6 +1,6 @@
 package test.hourcoincide;
 
-import test.utils.LogUtil;
+import test.util.LogUtil;
 
 public class CoincideForHourMinute {
     private static final int DAY_SEC = 24 * 60 * 60;

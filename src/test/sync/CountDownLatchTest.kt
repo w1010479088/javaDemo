@@ -1,6 +1,6 @@
 package test.sync
 
-import test.utils.LogUtil
+import test.util.LogUtil
 import java.util.concurrent.CountDownLatch
 
 fun main(args: Array<String>) {

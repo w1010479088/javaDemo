@@ -1,6 +1,6 @@
 package test.design.command
 
-import test.utils.LogUtil
+import test.util.LogUtil
 
 //命令:1,2,3
 //执行:1,2,3
