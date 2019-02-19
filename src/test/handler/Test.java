@@ -5,6 +5,9 @@ import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import test.util.LogUtil;
 
 public class Test {
@@ -123,7 +126,37 @@ class HandlerTest {
 
 class CollectionTest {
 
-    private void test() {
+    public static void main(String[] args) {
+        new CollectionTest().test();
+    }
 
+    private void test() {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+        list.add(6);
+        for (Integer item : list) {
+            if (item == 3) {
+//                edit(list);
+//                add(list);
+                remove(list);
+            }
+            LogUtil.log(String.valueOf(item));
+        }
+    }
+
+    private void edit(List<Integer> list) {
+        list.set(4, 100);
+    }
+
+    private void add(List<Integer> list) {
+        list.add(2, 100);
+    }
+
+    private void remove(List<Integer> list) {
+        list.remove(5);
     }
 }
