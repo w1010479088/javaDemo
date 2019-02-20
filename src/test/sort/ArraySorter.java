@@ -6,7 +6,7 @@ import test.util.LogUtil;
 
 public class ArraySorter {
     public static void main(String[] args) {
-        new ArraySorter(new int[]{1, 3, 5, 8});
+        new ArraySorter(new int[]{1, 3, 5});
     }
 
     private int[] array;
