@@ -1,10 +1,7 @@
 package test.interruption
 
 import test.util.LogUtil
-import java.util.concurrent.Callable
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
-import java.util.concurrent.TimeUnit
+import java.util.concurrent.*
 
 fun main(args: Array<String>) {
     InterruptionTest().start()
@@ -15,8 +12,18 @@ class InterruptionTest {
     fun start() {
         val service: ExecutorService = Executors.newSingleThreadExecutor()
         val future = service.submit(CallableSub())
-        val result = future.get(1, TimeUnit.SECONDS)
-        log(result)
+        try {
+            val result = future.get(1, TimeUnit.SECONDS)
+            log(result)
+        } catch (ex: TimeoutException) {
+            //ignore
+        } catch (ex: ExecutionException) {
+            //
+        } catch (ex: InterruptedException) {
+            //
+        } finally {
+            future.cancel(true)
+        }
     }
 }
 
