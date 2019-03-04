@@ -7,7 +7,7 @@ import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-class DownloadTask extends Thread implements IKillble {
+class DownloadTask implements IKillble, Runnable {
     private String urlStr;
     private File localFile;
     private long startPos;
