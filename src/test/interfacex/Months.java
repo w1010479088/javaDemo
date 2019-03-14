@@ -42,3 +42,16 @@ public class Months {
         LogUtil.log(month(8).toString());
     }
 }
+
+class Outer {
+    public Inner newInner() {
+        Outer outer = new Outer();
+        return outer.new Inner();
+    }
+
+    class Inner {
+        Outer getOuter() {
+            return Outer.this;
+        }
+    }
+}
