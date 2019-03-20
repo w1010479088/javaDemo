@@ -3,14 +3,16 @@ package test.downloader;
 import test.util.LogUtil;
 
 public class Test {
-    private static String savePath = "tempFile/";
-    private static String url = "https://passport.lrlz.com/data/upload/package/xmmz_release.apk";
-    private static String fileName = "xmmz_release.apk";
-    private static int threadNum = 3;
+    private static final String savePath = "tempFile/";
+    private static final String url = "https://passport.lrlz.com/data/upload/package/xmmz_release.apk";
+    private static final String fileName = "xmmz_release.apk";
+    private static final int threadNum = 20;
 
     private MultiThreadDownloader mDownloader;
+    private long mCurTime;
 
     public void run() {
+        mCurTime = curTime();
         mDownloader = new MultiThreadDownloader(url, savePath, fileName, threadNum, new OnDownloadListener() {
 
             @Override
@@ -31,6 +33,8 @@ public class Test {
             @Override
             public void onComplete() {
                 log("完毕!");
+                long spendTime = (curTime() - mCurTime) / 1000;
+                log("用时:" + spendTime);
             }
 
             @Override
@@ -49,6 +53,10 @@ public class Test {
 
     private void log(String content) {
         LogUtil.log(content);
+    }
+
+    private long curTime() {
+        return System.currentTimeMillis();
     }
 }
 

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicLong;
 
 import test.util.IOUtils;
 import test.util.LogUtil;
@@ -24,13 +25,13 @@ class MultiThreadDownloader implements IKillble {
     private static final String TEMP_FILE_SUF_FIX = ".temp";
 
     private long mFileSize;
-    private long mCurLength;
     private int mThreadCount;
     private String mDirStr;
     private String mFilename;
     private File mSourceFile;
     private OnDownloadListener mListener;
     private ExecutorService mExecutor;
+    private AtomicLong mCurLength = new AtomicLong();
     private List<File> mCacheFiles = new ArrayList<>();
     private List<IKillble> mKillables = new ArrayList<>();
 
@@ -46,6 +47,7 @@ class MultiThreadDownloader implements IKillble {
     @Override
     public void kill() {
         stopDownload();
+        closeExecutors();
     }
 
     private void stopDownload() {
@@ -62,6 +64,7 @@ class MultiThreadDownloader implements IKillble {
                 downLoadFile(urlStr);
             } catch (Exception ex) {
                 onError(ex);
+                closeExecutors();
             }
         });
     }
@@ -75,15 +78,15 @@ class MultiThreadDownloader implements IKillble {
 
         if (conn.getResponseCode() == NetUtil.REQUEST_CODE_SUCCESS) {
             this.mFileSize = conn.getContentLength();// 根据响应获取文件大小
-            if (mFileSize <= 0) {
+            if (getFileSize() <= 0) {
                 throw new RuntimeException("the file that you download has a wrong size ... ");
             }
             this.mSourceFile = IOUtils.newFile(mDirStr, mFilename);
             RandomAccessFile raf = new RandomAccessFile(mSourceFile, "rw");
-            raf.setLength(mFileSize);
+            raf.setLength(getFileSize());
             raf.close();
 
-            mListener.onFileSize(mFileSize);
+            mListener.onFileSize(getFileSize());
         }
     }
 
@@ -95,13 +98,13 @@ class MultiThreadDownloader implements IKillble {
     }
 
     private void downLoadFile(String urlStr) throws IOException {
-        long itemSize = (mFileSize % mThreadCount == 0) ? (mFileSize / mThreadCount) : (mFileSize / mThreadCount + 1);
+        long itemSize = (getFileSize() % mThreadCount == 0) ? (getFileSize() / mThreadCount) : (getFileSize() / mThreadCount + 1);
         for (int i = 0; i < mThreadCount; i++) {
             File itemFile = mCacheFiles.get(i);
             long downloadedLength = itemFile.length();
-            mCurLength += downloadedLength;
+            addLength(downloadedLength);
             long start = i * itemSize + downloadedLength;
-            long end = (i == (mThreadCount - 1)) ? mFileSize : ((i + 1) * itemSize - 1);
+            long end = (i == (mThreadCount - 1)) ? getFileSize() : ((i + 1) * itemSize - 1);
 
             if (start < end) {
                 DownloadTask downloadTask = new DownloadTask(urlStr, itemFile, start, end, new OnItemThreadListener() {
@@ -128,21 +131,33 @@ class MultiThreadDownloader implements IKillble {
 
     private void checkCompleted() {
         updateProgress();
-        if (mCurLength == mFileSize) {
+        if (getLength() == getFileSize()) {
             integrateFile();
         }
     }
 
-    private synchronized void downloadedLength(String threadName, int length) {
-        mCurLength += length;
-        log("当前大小:" + threadName + "|" + mCurLength);
+    private void downloadedLength(String threadName, int length) {
+        addLength(length);
+        log("当前大小:" + threadName + "|" + getLength());
         checkCompleted();
     }
 
     private void updateProgress() {
-        if (mFileSize > 0) {
-            mListener.onProgress((int) (mCurLength * 100 / mFileSize));
+        if (getFileSize() > 0) {
+            mListener.onProgress((int) (getLength() * 100 / getFileSize()));
         }
+    }
+
+    private void addLength(long length) {
+        mCurLength.addAndGet(length);
+    }
+
+    private long getLength() {
+        return mCurLength.get();
+    }
+
+    private long getFileSize() {
+        return mFileSize;
     }
 
     private void integrateFile() {
@@ -193,6 +208,12 @@ class MultiThreadDownloader implements IKillble {
         mListener.onError(ex);
     }
 
+    private void closeExecutors() {
+        if (mExecutor != null && !mExecutor.isShutdown()) {
+            mExecutor.shutdown();
+        }
+    }
+
     private void deleteCache() {
         for (File cacheFile : mCacheFiles) {
             IOUtils.delFile(cacheFile);
@@ -208,5 +229,6 @@ class MultiThreadDownloader implements IKillble {
         mListener.onComplete();
         mKillables.clear();
         mCacheFiles.clear();
+        closeExecutors();
     }
 }
