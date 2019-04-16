@@ -31,4 +31,8 @@ class BaseTest {
             LogUtil.log("---->Sub" + subNum + "--->" + this.hashCode());
         }
     }
+
+    public static void main(String[] args){
+        new Sub();
+    }
 }
