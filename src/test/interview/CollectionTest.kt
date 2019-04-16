@@ -5,7 +5,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 fun main(args: Array<String>) {
-    CollectionTest().iterator()
+    CollectionTest().swap()
 }
 
 class CollectionTest {
@@ -52,5 +52,17 @@ class CollectionTest {
     fun weak() {
         val weak = WeakHashMap<String, String>()
 
+    }
+
+    fun swap() {
+        var txt = "hello this is computer"
+        val items = txt.split(" ")
+        val newString = StringBuilder()
+        val iterator = items.listIterator(items.size)
+        while (iterator.hasPrevious()) {
+            newString.append(iterator.previous() + " ")
+        }
+        txt = newString.toString()
+        LogUtil.log(txt)
     }
 }
