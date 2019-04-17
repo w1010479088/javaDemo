@@ -5,7 +5,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 fun main(args: Array<String>) {
-    CollectionTest().swap()
+    CollectionTest().swap(5)
 }
 
 class CollectionTest {
@@ -64,5 +64,31 @@ class CollectionTest {
         }
         txt = newString.toString()
         LogUtil.log(txt)
+    }
+
+    private var count: Int = 0
+    private var bottle: Int = 0
+    private val RATIO: Int = 2
+
+    fun swap(money: Int) {
+        count += money
+
+        if (money >= RATIO) {
+            bottle += money % RATIO
+            swap(money / RATIO)
+            return
+        }
+
+        bottle += money
+
+        if (bottle >= RATIO) {
+            val tempMoney = bottle / RATIO
+            val tempLeft = bottle % RATIO
+            bottle = bottle - tempMoney * RATIO + tempLeft
+            swap(tempMoney)
+            return
+        }
+
+        LogUtil.log("$count")
     }
 }
