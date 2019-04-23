@@ -68,36 +68,3 @@ class BottleTest {
         }
     }
 }
-
-//冒泡排序
-class BubbleSort {
-    public static void main(String[] args) {
-        int[] sorted = new BubbleSort().sort(TEST);
-
-        StringBuilder sb = new StringBuilder();
-        for (int item : sorted) {
-            sb.append(String.valueOf(item));
-            sb.append("\n");
-        }
-        LogUtil.log(sb.toString());
-    }
-
-    private static final int[] TEST = new int[]{8, 3, 1, 4, 5, 2};
-
-    public int[] sort(int[] content) {
-        for (int i = 0; i < content.length - 1; i++) {
-            for (int j = 0; j < content.length - 1 - i; j++) {
-                if (content[j] > content[j + 1]) {
-                    swap(j, j + 1, content);
-                }
-            }
-        }
-        return content;
-    }
-
-    private void swap(int fromPos, int toPos, int[] data) {
-        int temp = data[toPos];
-        data[toPos] = data[fromPos];
-        data[fromPos] = temp;
-    }
-}
