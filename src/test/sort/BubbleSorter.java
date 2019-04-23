@@ -9,12 +9,7 @@ public class BubbleSorter implements ISortable {
     public static void main(String[] args) {
         int[] sorted = new BubbleSorter().sort(TEST);
 
-        StringBuilder sb = new StringBuilder();
-        for (int item : sorted) {
-            sb.append(String.valueOf(item));
-            sb.append("\n");
-        }
-        LogUtil.log(sb.toString());
+        LogUtil.log(sorted);
     }
 
     @Override
