@@ -55,7 +55,7 @@ class MultiThreadDownloader implements IKillble {
     }
 
     private void init(String urlStr) {
-        mExecutor.submit(() -> {
+        mExecutor.execute(() -> {
             try {
                 createSourceFile(urlStr);
                 createCacheFile();
@@ -121,7 +121,7 @@ class MultiThreadDownloader implements IKillble {
                     }
                 });
                 mKillables.add(downloadTask);
-                mExecutor.submit(downloadTask);
+                mExecutor.execute(downloadTask);
             }
         }
         checkCompleted();
