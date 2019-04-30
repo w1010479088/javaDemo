@@ -2,5 +2,5 @@ package test.sort;
 
 public interface ISortable {
 
-    int[] sort(int[] content);
+    void sort(int[] content);
 }

@@ -6,9 +6,8 @@ import test.util.SwapUtil;
 public class QuickSorter implements ISortable {
 
     @Override
-    public int[] sort(int[] content) {
+    public void sort(int[] content) {
         sort(content, 0, content.length - 1);
-        return content;
     }
 
     private void sort(int[] content, int low, int high) {
