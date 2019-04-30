@@ -5,18 +5,11 @@ import test.util.SwapUtil;
 
 public class QuickSorter implements ISortable {
 
-    public static void main(String[] args) {
-        int[] sorted = new QuickSorter().sort(TEST);
-        LogUtil.log(sorted);
-    }
-
     @Override
     public int[] sort(int[] content) {
-        sort(TEST, 0, TEST.length - 1);
-        return TEST;
+        sort(content, 0, content.length - 1);
+        return content;
     }
-
-    private static final int[] TEST = {12, 20, 1, 5};
 
     private void sort(int[] content, int low, int high) {
         int start = low;
