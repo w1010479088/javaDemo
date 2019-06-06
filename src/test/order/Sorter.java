@@ -35,8 +35,8 @@ public class Sorter {
 
         if (start > size - 1) {
             return Collections.emptyList();
-        } else if (end > size - 1) {
-            return orders.subList(start, size - 1);
+        } else if (end > size) {
+            return orders.subList(start, size);
         } else {
             return orders.subList(start, end);
         }
