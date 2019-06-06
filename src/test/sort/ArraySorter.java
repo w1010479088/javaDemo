@@ -3,11 +3,9 @@ package test.sort;
 import java.util.Arrays;
 
 import test.util.LogUtil;
+import test.util.SwapUtil;
 
 public class ArraySorter {
-    public static void main(String[] args) {
-        new ArraySorter(new int[]{1, 3, 5});
-    }
 
     private int[] array;
     private int endPos;
@@ -31,9 +29,7 @@ public class ArraySorter {
     }
 
     private void swap(int index1, int index2) {
-        int temp = array[index1];
-        array[index1] = array[index2];
-        array[index2] = temp;
+        SwapUtil.swap(array, index1, index2);
     }
 
     private void log() {

@@ -8,6 +8,10 @@ public class Test {
     private static final String fileName = "xmmz_release.apk";
     private static final int threadNum = 20;
 
+    public static void main(String[] args) {
+        new Test().run();
+    }
+
     private MultiThreadDownloader mDownloader;
     private long mCurTime;
 
@@ -57,11 +61,5 @@ public class Test {
 
     private long curTime() {
         return System.currentTimeMillis();
-    }
-}
-
-class TestDownload {
-    public static void main(String[] args) {
-        new Test().run();
     }
 }

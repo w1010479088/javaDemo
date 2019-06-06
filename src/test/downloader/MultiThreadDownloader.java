@@ -1,8 +1,6 @@
 package test.downloader;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
@@ -57,7 +55,7 @@ class MultiThreadDownloader implements IKillble {
     }
 
     private void init(String urlStr) {
-        mExecutor.submit(() -> {
+        mExecutor.execute(() -> {
             try {
                 createSourceFile(urlStr);
                 createCacheFile();
@@ -123,7 +121,7 @@ class MultiThreadDownloader implements IKillble {
                     }
                 });
                 mKillables.add(downloadTask);
-                mExecutor.submit(downloadTask);
+                mExecutor.execute(downloadTask);
             }
         }
         checkCompleted();
@@ -162,46 +160,22 @@ class MultiThreadDownloader implements IKillble {
 
     private void integrateFile() {
         mListener.onIntegrate();
-        mExecutor.submit(() -> {
-            long length = 0;
-            for (File file : mCacheFiles) {
-                length += file.length();
+        mExecutor.execute(new FileIntegrater(mSourceFile, mCacheFiles, new IntegrateListener() {
+            @Override
+            public void log(String content) {
+                MultiThreadDownloader.this.log(content);
             }
-            if (mSourceFile.length() == length) {
-                FileOutputStream os = null;
-                List<FileInputStream> iss = new ArrayList<>();
-                int len;
-                byte[] bytes = new byte[4096];
-                try {
-                    os = new FileOutputStream(mSourceFile);
-                    for (File file : mCacheFiles) {
-                        FileInputStream is = new FileInputStream(file);
-                        iss.add(is);
-                        while ((len = is.read(bytes)) != -1) {
-                            os.write(bytes, 0, len);
-                        }
-                    }
-                    complete();
-                } catch (Exception ex) {
-                    onError(ex);
-                } finally {
-                    try {
-                        if (os != null) {
-                            os.close();
-                        }
-                        for (FileInputStream is : iss) {
-                            if (is != null) {
-                                is.close();
-                            }
-                        }
-                    } catch (Exception ex) {
-                        onError(ex);
-                    }
-                }
-            } else {
-                log("文件大小校验不正确,取消操作!正常文件大小为:" + mSourceFile.length() + "-- 实际碎片整合之后大小为: " + length);
+
+            @Override
+            public void complete() {
+                MultiThreadDownloader.this.complete();
             }
-        });
+
+            @Override
+            public void onError(Exception ex) {
+                MultiThreadDownloader.this.onError(ex);
+            }
+        }));
     }
 
     private void onError(Exception ex) {
