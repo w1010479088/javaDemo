@@ -1,5 +1,17 @@
 package test.kotlin
 
+import test.util.LogUtil
+
+fun main(args: Array<String>) {
+    val a: Float = 0.01F
+    val b: Float = 0.0100F
+    if (a == b) {
+        LogUtil.log("a == b")
+    } else {
+        LogUtil.log("a != b")
+    }
+}
+
 class TestKotlinC {
     var user = User(mapOf("name" to "jun", "age" to 15))
 }
@@ -84,6 +96,10 @@ fun range() {
         //...
     }
 
+    if (x in 1 until y + 1) {
+
+    }
+
     val list = listOf("a", "b", "c")
     if (-1 !in 0..list.size) {
         //...
@@ -115,4 +131,61 @@ fun range() {
             .sortedBy { it }
             .map { it.toUpperCase() }
             .forEach { println(it) }
+
+    val notEmpty = list.filter { it.isNotBlank() }
+}
+
+fun defaultArgs(a: Int = 0, b: String = "") {
+//    defaultArgs(b = "45")
+//    defaultArgs(9)
+//    defaultArgs(a = 9)
+}
+
+fun map(map: Map<String, String>) {
+    for ((k, v) in map) {
+        println("k = $k -> v = $v")
+    }
+}
+
+class Turtle {
+    fun penDown() {}
+    fun penUp() {}
+    fun turn() {}
+    fun forward() {}
+}
+
+fun turtle() {
+    val turtle = Turtle()
+    with(turtle) {
+        penDown()
+        for (x in 1..5) {
+            forward()
+            turn()
+        }
+        penUp()
+    }
+}
+
+fun swap() {
+    var a = 1
+    var b = 2
+    a = b.also { b = a }
+}
+
+fun decimalDigitValue(c: Char): Int {
+    if (c !in '0' until '9') {
+        throw IllegalArgumentException("out of range")
+    } else {
+        return c.toInt() - '0'.toInt()
+    }
+}
+
+fun whenTest() {
+    outer@ for (i in 1..100) {
+        //...
+        inner@ for (j in 2..10) {
+            //...
+            break@outer
+        }
+    }
 }
