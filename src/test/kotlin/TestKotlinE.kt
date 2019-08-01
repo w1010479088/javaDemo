@@ -101,3 +101,7 @@ fun testList() {
     val a = arrayOf("a", "b", "c")
     val list = asList("a", "b", *a, "c")
 }
+
+
+const val eps = 1E-10
+tailrec fun findPoint(x: Double = 1.0): Double = if (Math.abs(x - Math.cos(x)) < eps) x else findPoint(Math.cos(x))
