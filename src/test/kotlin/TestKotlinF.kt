@@ -1,5 +1,7 @@
 package test.kotlin
 
+import test.util.LogUtil
+
 //fun <T> ObjectOutputStream.findParentOfType(clazz: Class<test.kotlin.T>): T? {
 //    var p = parent
 //    while(p != null && !clazz.isInstance(p)){
@@ -9,7 +11,7 @@ package test.kotlin
 //    return p as T?
 //}
 fun main(args: Array<String>) {
-    TestKotlinF().b()
+    TestKotlinF().c()
 }
 
 class TestKotlinF {
@@ -45,6 +47,27 @@ class TestKotlinF {
     }
 
     fun c() {
+        for (i in 10 downTo 1 step 3) {
+            LogUtil.log("$i")
+        }
+    }
 
+    class User(val age: Int) : Comparable<User> {
+        override fun compareTo(other: User): Int {
+            return this.age - other.age
+        }
+    }
+
+    fun d() {
+        val comparator = Comparator { v1: String, v2: String -> v1.length - v2.length }
+        val list = listOf("ab", "c", "abc", "abcdef")
+        list.sortedWith(comparator)
+        list.sortedWith(compareBy { it.length })
+
+
+        val listU = listOf<User>()
+        listU.sortedWith(compareBy { it.age })
+        listU.maxWith(compareBy { it.age })
+        listU.minWith(compareBy { it.age })
     }
 }
