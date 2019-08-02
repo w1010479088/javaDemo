@@ -11,10 +11,11 @@ import test.util.LogUtil
 //    return p as T?
 //}
 fun main(args: Array<String>) {
-    TestKotlinF().c()
+//    TestKotlinF().c()
 }
 
 class TestKotlinF {
+
     fun a() {
         val words = "A long time ago in a galaxy far far away".split(" ")
         val shortWords = mutableListOf<String>()
@@ -52,7 +53,7 @@ class TestKotlinF {
         }
     }
 
-    class User(val age: Int) : Comparable<User> {
+    class User(val name: String, val age: Int) : Comparable<User> {
         override fun compareTo(other: User): Int {
             return this.age - other.age
         }
@@ -70,4 +71,49 @@ class TestKotlinF {
         listU.maxWith(compareBy { it.age })
         listU.minWith(compareBy { it.age })
     }
+
+    fun f() {
+        val u1 = User("Jun", 18)
+//        var (name, age) = u1
+        val map = mapOf("a" to 1, "b" to 2)
+        for ((key, value) in map) {
+            LogUtil.log("$key = $value")
+        }
+    }
+
+    fun g(x: Any) {
+        when (x) {
+            is Int -> LogUtil.log("${x + 1}")
+            is String -> LogUtil.log("${x.length}")
+            is IntArray -> LogUtil.log("${x.sum()}")
+        }
+    }
+
+    fun h() {
+        val y = null
+        val x: String? = y as? String
+    }
+
+    inner class A {
+        inner class B {
+            fun Int.foo() {
+                val a = this@A
+                val b = this@B
+                val c = this
+                val d = this@foo
+            }
+
+            fun a() {
+                val a = B()
+                val b = B()
+                if (a === b) {
+                    //引用相等性
+                }
+            }
+        }
+    }
+
+    data class Point(val x: Int, val y: Int)
+
+    operator fun Point.unaryMinus() = Point(-x, -y)
 }
