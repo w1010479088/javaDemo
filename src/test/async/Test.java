@@ -20,6 +20,7 @@ class AsyncTaskA extends AsyncTask<String, Integer, Integer> {
     @Override
     protected Integer doInBackground(String... strings) {
         LogUtil.log("doInBackground");
+        publishProgress(99);
         return 20;
     }
 
