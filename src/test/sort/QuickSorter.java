@@ -45,8 +45,8 @@ public class QuickSorter implements ISortable {
             sort(content, low, start - 1);
         }
 
-        if (end < high) {
-            sort(content, end + 1, high);
+        if (start < high) {
+            sort(content, start + 1, high);
         }
     }
 }
