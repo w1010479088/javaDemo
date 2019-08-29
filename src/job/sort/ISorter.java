@@ -6,7 +6,7 @@ import test.util.SwapUtil;
 class Test {
     public static void main(String[] args) {
         int[] contents = {5, 3, 7, 100, 2, 4, 1, 6, 0};
-        ISorter sorter = new QuickerSorter();
+        ISorter sorter = new InsertSorter();
         sorter.sort(contents);
         LogUtil.log(contents);
     }
@@ -73,6 +73,22 @@ class QuickerSorter implements ISorter {
         //右边递归
         if (start < high) {
             sort(contents, start + 1, high);
+        }
+    }
+}
+
+class InsertSorter implements ISorter {
+
+    @Override
+    public void sort(int[] contents) {
+        for (int i = 1; i < contents.length; i++) {
+            for (int j = i; j > 0; j--) {
+                if (contents[j] < contents[j - 1]) {
+                    SwapUtil.swap(contents, j, j - 1);
+                } else {
+                    break;
+                }
+            }
         }
     }
 }
