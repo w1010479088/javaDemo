@@ -6,6 +6,10 @@ public class LogUtil {
         System.out.println("------>" + content);
     }
 
+    public static void divider(){
+        LogUtil.log("--------------------");
+    }
+
     public static void log(int[] content) {
         StringBuilder sb = new StringBuilder("[");
         for (int i = 0; i < content.length; i++) {
