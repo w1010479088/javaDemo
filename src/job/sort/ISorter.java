@@ -5,10 +5,26 @@ import test.util.SwapUtil;
 
 class Test {
     public static void main(String[] args) {
-        int[] contents = {5, 3, 7, 100, 2, 4, 1, 6, 0};
-        ISorter sorter = new InsertSorter();
-        sorter.sort(contents);
-        LogUtil.log(contents);
+//        int[] contents = {5, 3, 7, 100, 2, 4, 1, 6, 0};
+//        ISorter sorter = new InsertSorter();
+//        sorter.sort(contents);
+//        LogUtil.log(contents);
+
+        int[] contents = {5, 3, 7, 4};
+        fullSort(contents, 0, contents.length - 1);
+    }
+
+    private static void fullSort(int[] contents, int start, int end) {
+        if (start == end) {
+            LogUtil.log(contents);
+            return;
+        }
+
+        for (int i = start; i <= end; i++) {
+            SwapUtil.swap(contents, start, i);
+            fullSort(contents, start + 1, end);
+            SwapUtil.swap(contents, start, i);
+        }
     }
 }
 
