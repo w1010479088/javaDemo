@@ -2,6 +2,7 @@ package job.concurrent;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
@@ -35,5 +36,11 @@ public class Concurrent {
     private void e() {
         ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
 //        executor.scheduleAtFixedRate();
+    }
+
+    private void f(){
+        ForkJoinPool pool = new ForkJoinPool();
+//        pool.execute(ForkJoinTask);
+//        ForkJoinTask
     }
 }
