@@ -6,6 +6,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class Lock {
     private final java.util.concurrent.locks.Lock mLock = new ReentrantLock();
     private final Condition mCondition = mLock.newCondition();
+    private final Object mLockObj = new Object();
 
     private void a() {
         mLock.tryLock();
@@ -22,5 +23,11 @@ public class Lock {
         mLock.lock();
         mCondition.signal();
         mLock.unlock();
+    }
+
+    private void c() {
+        synchronized (mLockObj){
+            //mLockObj必须是final类型的
+        }
     }
 }
