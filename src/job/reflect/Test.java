@@ -4,7 +4,8 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-import job.LogUtil;
+import test.util.LogUtil;
+
 
 class Test extends Sub {
     private String name;

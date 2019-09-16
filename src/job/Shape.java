@@ -1,5 +1,7 @@
 package job;
 
+import test.util.LogUtil;
+
 class Shape {
     private static Pencil pencil = new Pencil("Shape");
 

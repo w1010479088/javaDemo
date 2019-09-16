@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.StringTokenizer;
 
+import test.util.LogUtil;
+
 public class StringCounter {
     public static void main(String[] args) {
         try {

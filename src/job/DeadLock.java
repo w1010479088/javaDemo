@@ -3,6 +3,8 @@ package job;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import test.util.LogUtil;
+
 /*
 *写个简单的会产生死锁的类
 * */
