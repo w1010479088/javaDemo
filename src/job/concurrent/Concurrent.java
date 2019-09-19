@@ -4,7 +4,10 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class Concurrent {
 
@@ -38,9 +41,22 @@ public class Concurrent {
 //        executor.scheduleAtFixedRate();
     }
 
-    private void f(){
+    private void f() {
         ForkJoinPool pool = new ForkJoinPool();
 //        pool.execute(ForkJoinTask);
 //        ForkJoinTask
+    }
+
+    private void g() {
+        LinkedBlockingQueue<Runnable> queue = new LinkedBlockingQueue<>();
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(
+                2,
+                10,
+                10 * 1000,
+                TimeUnit.HOURS,
+                queue,
+                r -> null,
+                new ThreadPoolExecutor.AbortPolicy()
+        );
     }
 }
