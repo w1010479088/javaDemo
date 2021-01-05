@@ -58,7 +58,7 @@ class Test2 {
 
         @JvmStatic
         fun main(args: Array<String>) {
-            val list = arrayOf(3, 4, 5, 1, 2, 6)
+            val list = arrayOf(3, 4, 9, 1, 2, 6)
             Test2().sort(list)
             list.forEach {
                 System.out.print(it)
@@ -68,9 +68,9 @@ class Test2 {
 
 
     fun sort(list: Array<Int>) {
-        for (i in 1..list.size) {
-            for (j in i until 0) {
-                if (list[j] < list[j - 1]) {
+        for (i in 1 until list.size) {
+            for (j in i downTo 1) {
+                if (list[j - 1] > list[j]) {
                     swap(list, j, j - 1)
                 } else {
                     break
@@ -109,10 +109,10 @@ class Test3 {
         return true
     }
 
-    fun isRecycle2(content : String):Boolean {
+    fun isRecycle2(content: String): Boolean {
         var index = 0
-        while(index < (content.length) / 2 ){
-            if(content[index] == content[content.length - 1 - index]) {
+        while (index < (content.length) / 2) {
+            if (content[index] == content[content.length - 1 - index]) {
                 index++
             } else {
                 return false
